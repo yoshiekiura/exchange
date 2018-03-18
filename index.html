@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cryptex Market - Open Source Decentralized Exchange</title>
+	<link href="/images/favicon.ico" rel="icon">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0">
+	<link href="/style/bootstrap.min.css" rel="stylesheet">
+	<link href="/style/default.css" rel="stylesheet">
+	<link href="/style/dark.css" rel="stylesheet" id="theme">
+	<link href="/style/alertify.min.css" rel="stylesheet">
+	<link href="/style/alertify-bootstrap.min.css" rel="stylesheet">
+	<link href="/style/iconmoon/style.css" rel="stylesheet">
+	<link href="/style/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="first-load">
+		<div class="info">
+			<div class="bar">
+				<div class="text">Loading...</div>
+				<div class="loaded"></div>
+			</div>
+		</div>
+	</div>
+
+	<!-- nav -->
+	<nav id="menu" class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only" id="toggleNavigation" class="trn">toggle_navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/">
+					<img src="/images/cryptex.png" />
+				</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li>
+						<div class="toggle-box">
+							<input type="checkbox" name="checkbox1" id="toggle-box-checkbox" checked="">
+							<label for="toggle-box-checkbox" class="toggle-box-label-left"></label>
+							<label for="toggle-box-checkbox" class="toggle-box-label"></label>
+						</div>
+					</li>
+
+					<style type="text/css">
+						.toggle-box input[type=checkbox] + .toggle-box-label-left {
+							color: rgba(250,250,250,0.51);
+							font-weight: bold;
+						}
+
+						.toggle-box input[type=checkbox]:checked + .toggle-box-label-left {
+							color: rgba(149,149,149,0.51);
+							font-weight: normal;
+						}
+
+						.toggle-box input[type=checkbox]:checked + .toggle-box-label-left + .toggle-box-label {
+							color: rgba(250,250,250,0.51);
+							font-weight: bold;
+						}
+
+						.toggle-box input[type=checkbox], .toggle-box input[type=checkbox]:active {
+							position: absolute;
+							top: -5000px;
+							height: 0;
+							width: 0;
+							opacity: 0;
+							border: none;
+							outline: none;
+						}
+
+						.toggle-box label {
+							display: inline-block;
+							position: relative;
+							padding: 0px;
+							margin-top: 13px;
+							margin-bottom: 13px;
+							font-size: 14px;
+							line-height: 16px;
+							cursor: pointer;
+							color: rgba(149,149,149,0.51);
+							font-weight: normal;
+						}
+
+						.toggle-box-label-left:before, .toggle-box-label-left:after {
+							box-sizing: border-box;
+							margin: 0;
+							padding: 0;
+							-webkit-transition: .25s ease-in-out;
+							-moz-transition: .25s ease-in-out;
+							-o-transition: .25s ease-in-out;
+							transition: .25s ease-in-out;
+							outline: none;
+						}
+
+						.toggle-box-label-left:after {
+							content: "";
+							display: inline-block;
+							width: 40px;
+							height: 24px;
+							-webkit-border-radius: 16px;
+							-moz-border-radius: 16px;
+							border-radius: 16px;
+							background: rgba(255,255,255,0.15);
+							vertical-align: middle;
+							margin: 0 10px;
+							border: 2px solid #a3abb8;
+						}
+
+						.toggle-box input[type=checkbox]:checked + .toggle-box-label-left:after {
+							background: rgba(0,0,0,0.15);
+							border: 2px solid white;
+						}
+
+						.toggle-box-label-left:before {
+							content: '';
+							display: block;
+							position: absolute;
+							z-index: 1;
+							line-height: 34px;
+							text-indent: 40px;
+							height: 16px;
+							width: 16px;
+							margin: 4px;
+							-webkit-border-radius: 100%;
+							-moz-border-radius: 100%;
+							border-radius: 100%;
+							right: 26px;
+							bottom: 0px;
+							background: #c5cdd9;
+							transform: rotate(-45deg);
+							box-shadow: 0 0 10px white;
+						}
+
+						.toggle-box input[type=checkbox]:checked + .toggle-box-label-left:before {
+							right: 17px;
+							box-shadow: 5px 5px 0 0 #eee;
+							background: transparent;
+						}
+					</style>
+
+					<!-- <li class="theme dark"><a><span class="icon-lamp"></span><span class="trn">lights_off</span></a></li> -->
+					<!-- <li class="theme light"><a><span class="icon-lamp"></span><span class="trn">lights_on</span></a></li> -->
+
+					<li class="dropdown" id="tokensDropdown"></li>
+					<!-- <li><a class="nothing"><span class="icon-exchange"></span></a></li> -->
+					<!-- <li class="dropdown" id="basesDropdown"></li> -->
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown" id="tokenGuidesDropdown"></li>
+					<li class="dropdown" id="helpDropdown"></li>
+					<li class="dropdown" id="connection"></li>
+					<li class="dropdown" id="languages"></li>
+					<li class="dropdown" id="addresses"></li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<!-- END nav -->
+
+	<!-- content -->
+	<div id="content" class="container-fluid">
+		<div class="col col-lg-10 no-padding">
+			<div class="col col-lg-3 col-md-3">
+				<div id="wallets" class="row">
+					<div class="title"><span class="trn">balance</span></div>
+					<div class="data" style="padding-top: 80px;">
+						<div class="blue-bar" style="top: 80px;"></div>
+						<ul class="nav nav-tabs nav-absolute" role="tablist">
+							<li role="presentation" class="col-lg-4 col-md-4 active"><a href="#deposit" aria-controls="deposit" role="tab" data-toggle="tab" class="trn">deposit</a></li>
+							<li role="presentation" class="col-lg-4 col-md-4"><a href="#withdraw" aria-controls="withdraw" role="tab" data-toggle="tab" class="trn">withdraw</a></li>
+							<li role="presentation" class="col-lg-4 col-md-4"><a href="#transfer" aria-controls="transfer" role="tab" data-toggle="tab" class="trn">transfer</a></li>
+						</ul>
+						<div class="tab-content tabla">
+							<div role="tabpanel" class="tab-pane active" id="deposit"></div>
+							<div role="tabpanel" class="tab-pane" id="withdraw"></div>
+							<div role="tabpanel" class="tab-pane" id="transfer"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col col-lg-3 col-md-3">
+				<div class="row">
+					<div class="title"><span class="trn">new_order</span></div>
+					<div class="data">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="col-lg-6 col-md-6 active"><a href="#buy" aria-controls="buy" role="tab" data-toggle="tab" class="trn">buy</a></li>
+							<li role="presentation" class="col-lg-6 col-md-6"><a href="#sell" aria-controls="sell" role="tab" data-toggle="tab" class="trn">sell</a></li>
+						</ul>
+						<input type="hidden" id="tokenAddr" value="<%= selectedToken.addr %>" />
+						<input type="hidden" id="baseAddr" value="<%= selectedBase.addr %>" />
+
+						<div class="tab-content" style="margin-top: 10px;">
+							<div role="tabpanel" class="tab-pane active" id="buy"></div>
+							<div role="tabpanel" class="tab-pane" id="sell"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col col-lg-3 col-md-3">
+				<div class="row">
+					<div class="title"><span class="trn">bid</span></div>
+					<div class="data" style="padding-top: 35px;">
+						<div class="blue-bar no-bottom-radius"></div>
+						<div id="buyBook" class="tabla"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col col-lg-3 col-md-3">
+				<div class="row">
+					<div class="title"><span class="trn">offer</span></div>
+					<div class="data" style="padding-top: 35px;">
+						<div class="blue-bar no-bottom-radius"></div>
+						<div id="sellBook" class="tabla"></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col col-lg-4 col-md-4">
+				<div class="row">
+					<div class="title"><span class="trn">volume</span></div>
+					<div class="data" style="padding-top: 35px;">
+						<div class="blue-bar"></div>
+						<div class="tabla">
+							<table id="volume" class="table table-condensed table-borderless">
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col col-lg-5 col-md-5">
+				<div class="row">
+					<div class="title"><span class="trn">price_chart</span></span></div>
+					<div class="data">
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="col-lg-6 col-md-6 active"><a href="#chartPrice" aria-controls="chartPrice" role="tab" data-toggle="tab" class="trn">price</a></li>
+							<li role="presentation" class="col-lg-6 col-md-6"><a href="#chartDepth" aria-controls="chartDepth" role="tab" data-toggle="tab" class="trn">depth</a></li>
+						</ul>
+						<div id="stats" class="stats row"></div>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="chartPrice" style="height: 100%; width: 100%;"></div>
+							<div role="tabpanel" class="tab-pane" id="chartDepth" style="height: 100%; width: 100%;"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="thistransactions" class="col col-lg-3 col-md-3">
+				<div class="row">
+					<div class="title"><span class="trn">my_transactions</span></div>
+					<div class="data" style="padding-top: 80px;">
+						<div class="blue-bar" style="top: 80px;"></div>
+						<ul class="nav nav-tabs nav-absolute" role="tablist">
+							<li role="presentation" class="col-lg-6 col-md-6 active"><a href="#myTrades" aria-controls="myTrades" role="tab" data-toggle="tab" class="trn">trades</a></li>
+							<li role="presentation" class="col-lg-6 col-md-6"><a href="#myOrders" aria-controls="myOrders" role="tab" data-toggle="tab" class="trn">orders</a></li>
+						</ul>
+						<div class="tab-content tabla">
+							<div role="tabpanel" class="tab-pane active" id="myTrades"></div>
+							<div role="tabpanel" class="tab-pane" id="myOrders"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div id="thistrades" class="col col-lg-2 col-md-2 no-padding">
+			<div class="row" style="height: 80%;">
+				<div class="title"><span class="trn">trades</span></div>
+				<div class="data" style="padding-top: 37px;">
+					<div class="blue-bar"></div>
+					<div id="trades" class="tabla"></div>
+				</div>
+			</div>
+
+			<div id="copyright" class="row" style="height: 20%;">
+				<div class="title"><span class="trn">about</span></div>
+				<div class="data">
+					<div class="bottom">
+						<a href="#">Help</a> | <a href="https://cryptex.cc/#contact">Contact</a><br>
+						Cryptex &copy; 2017
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- END content -->
+
+	<!-- Address -->
+	<div class="modal fade" id="accountModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title trn">import_account</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="accountAddr" class="trn">address</label>
+							<input type="text" class="form-control" id="accountAddr" placeholder="0x..." />
+						</div>
+						<div id="pkDiv">
+							<div class="form-group">
+								<label for="accountPk" class="trn">private_key</label>
+								<input type="text" class="form-control" id="accountPk" placeholder="0x..." />
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default trn" data-dismiss="modal">cancel</button>
+					<button type="button" class="btn btn-primary trn" id="accountSubmit">import_account</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Buy -->
+	<div class="modal fade" id="buyCrossModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title trn">buy</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="buyCrossDesc" class="trn">order</label>
+							<div id="buyCrossDesc"></div>
+						</div>
+						<div class="form-group">
+							<label for="buyCrossAmount"><span class="trn">amount_to_buy</span> (<span class="buyCrossToken"></span>)</label>
+							<input type="text" class="form-control trn" id="buyCrossAmount" placeholder="amount" />
+						</div>
+						<div class="form-group">
+							<label for="buyCrossBaseAmount"><span class="buyCrossBase"></span></label>
+							<input type="text" class="form-control trn" id="buyCrossBaseAmount" placeholder="amount" />
+						</div>
+						<div class="form-group">
+							<label for="buyCrossFee"><span class="trn">fee</span> (<span class="buyCrossBase"></span>)</label>
+							<input type="text" class="form-control trn" id="buyCrossFee" disabled="disabled" value="0.005" />
+						</div>
+					</form>
+				</div>
+				<input type="hidden" id="buyCrossOrder" />
+				<div class="modal-footer">
+					<button type="button" class="btn btn-success trn" id="buyCrossSubmit">buy</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Sell -->
+	<div class="modal fade" id="sellCrossModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title trn">sell</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="sellCrossDesc" class="trn">order</label>
+							<div id="sellCrossDesc"></div>
+						</div>
+						<div class="form-group">
+							<label for="sellCrossAmount"><span class="trn">amount_to_sell</span> (<span class="sellCrossToken"></span>)</label>
+							<input type="text" class="form-control trn" id="sellCrossAmount" placeholder="amount" />
+						</div>
+						<div class="form-group">
+							<label for="sellCrossBaseAmount"><span class="sellCrossBase"></span></label>
+							<input type="text" class="form-control trn" id="sellCrossBaseAmount" placeholder="amount" />
+						</div>
+						<div class="form-group">
+							<label for="sellCrossFee"><span class="trn">fee</span> (ETH)</label>
+							<input type="text" class="form-control trn" id="sellCrossFee" disabled="disabled" />
+						</div>
+					</form>
+				</div>
+				<input type="hidden" id="sellCrossOrder" />
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary trn" id="sellCrossSubmit">sell</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Other token -->
+	<div class="modal fade" id="otherTokenModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title trn">other_token</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="otherTokenAddr" class="trn">address</label>
+							<input type="text" class="form-control" id="otherTokenAddr" placeholder="0x..." />
+						</div>
+						<div class="form-group">
+							<label for="otherTokenName" class="trn">name</label>
+							<input type="text" class="form-control" id="otherTokenName" placeholder="XYZ" />
+						</div>
+						<div class="form-group">
+							<label for="otherTokenDecimals" class="trn">decimals</label>
+							<input type="text" class="form-control" id="otherTokenDecimals" value="18" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default trn" data-dismiss="modal">cancel</button>
+					<button type="button" class="btn btn-primary trn" id="otherTokenSubmit">go</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Other base -->
+	<div class="modal fade" id="otherBaseModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title trn">other_base</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="form-group">
+							<label for="otherBaseAddr" class="trn">address</label>
+							<input type="text" class="form-control" id="otherBaseAddr" placeholder="0x..." />
+						</div>
+						<div class="form-group">
+							<label for="otherBaseName" class="trn">name</label>
+							<input type="text" class="form-control" id="otherBaseName" placeholder="XYZ" />
+						</div>
+						<div class="form-group">
+							<label for="otherBaseDecimals" class="trn">decimals</label>
+							<input type="text" class="form-control" id="otherBaseDecimals" value="18" />
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default trn" data-dismiss="modal">cancel</button>
+					<button type="button" class="btn btn-primary trn" id="otherBaseSubmit">go</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Token -->
+	<div class="modal fade" id="tokenModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title"><div id="tokenGuideTitle"></div></h4>
+				</div>
+				<div class="modal-body">
+					<div id="tokenGuideDetails"></div>
+					<div id="tokenGuideBody"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Help -->
+	<div class="modal fade" id="helpModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="helpBody"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Screencast -->
+	<div class="modal fade" id="screencastModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog large" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<div id="screencastBody"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="//www.gstatic.com/charts/loader.js" type="text/javascript"></script>
+	<script>google.charts.load('current', {packages: ['corechart', 'line']});</script>
+	<script src="/js/jquery-1.11.1.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript">
+		var percent = 6;
+		function process() {
+			stop = $('.first-load .bar .loaded').hasClass('done');
+			if(stop === true) {
+				return;
+			}
+			percent += Math.floor((Math.random() * 10) + 1);
+			$('.first-load .bar .loaded').width(percent + '%');
+		   
+			if (percent <= 100) {
+				setTimeout(function() {
+					process();
+				}, 180);
+			}
+		}
+		process();
+	</script>
+
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<script src="/js/jquery.translate.js" type="text/javascript"></script>
+	<script src="/js/ejs_production.js" type="text/javascript"></script>
+	<script src="/js/bundle.js" type="text/javascript"></script>
+	<script src="/js/custom.js" type="text/javascript"></script>
+	<script src="/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/js/alertify.min.js" type="text/javascript"></script>
+	<script src="script.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			// $('.toggle-box').click(function() {
+			// 	$("#toggle-box-checkbox").trigger('click');
+			// 	// console.log('triggered');
+			// 	alert('me');
+			// });
+		});
+	</script>
+
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-98438076-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+</body>
+</html>

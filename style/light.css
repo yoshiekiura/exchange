@@ -1,0 +1,200 @@
+body {
+	background-color: #DFDFDF;
+}
+::-webkit-scrollbar-thumb {
+	background-color: #5D606A;
+	border: 3px #CBCBCB solid;
+}
+.form-control {
+	background-color: #DFDFDF;
+	border-color: #d0d0d0;
+	color: #5d606a !important;
+}
+.form-control:active,
+.form-control:focus {
+	background-color: #f2f2f2;
+	border-color: #cfcfcf;
+}
+.form-control[disabled] {
+	background-color: #bdbdbd;
+	border-color: #adadad;
+}
+.btn-success {
+	background-color: #228441;
+	border-color: #23733c;
+}
+.btn-success:hover,
+.btn-success:active,
+.btn-success:focus {
+	background-color: #2ba050;
+	border-color: #228441;
+}
+.btn-primary {
+	border-color: #29627d;
+}
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:focus {
+	background-color: #3b95bf;
+	border-color: #3788ae;
+}
+
+#menu {
+	background-color: #2D445E;
+}
+#menu a {
+	color: #b2b2b2;
+}
+#menu a.nothing {
+	color: #b2b2b2 !important;
+}
+#menu li.theme.light {
+	display: none;
+}
+#menu li.theme.dark {
+	display: inline-block;
+}
+#menu li.theme.dark a .icon-lamp {
+	color: #FFFFFF;
+}
+#menu li.theme.dark:hover a .icon-lamp {
+	color: #797979;
+	text-shadow: 0px 0px 10px #191919;
+}
+#menu li.dropdown > a {
+	color: #b2b2b2 !important;
+}
+#menu ul.dropdown-menu {
+	background-color: #2D445E;
+}
+#menu ul.dropdown-menu::-webkit-scrollbar-thumb {
+	border-color: #2D445E;
+}
+#menu ul.dropdown-menu li:hover a {
+	background-color: #3b95bf;
+}
+#menu ul.dropdown-menu li a:hover,
+#menu ul.dropdown-menu li a:active,
+#menu ul.dropdown-menu li a:focus {
+	background-color: #3b95bf !important;
+}
+#menu li.dropdown.open > a {
+	background-color: #2A6C8B;
+}
+#menu .badge {
+	background-color: #2a6c8b;
+}
+
+#content .col > .row {
+	border-bottom: 10px solid #DFDFDF;
+}
+#content .col .row.draggable {
+	border: 5px solid #DFDFDF;
+}
+#content .col .row .title {
+	background-color: #2A6C8B;
+}
+#content .col .row .title .icon {
+	color: #DFDFDF;
+}
+#content .col .row .data {
+	background-color: #cbcbcb;
+	color: #5d606a;
+}
+#content .col .row .data .nav-tabs li a {
+	background-color: #DFDFDF;
+	color: #5d606a;
+}
+#content .col .row .data .nav-tabs li.active a {
+	background-color: #2A6C8B;
+}
+#content .col .row .data .nav-tabs li:hover a {
+	background-color: #3b95bf;
+	color: #FFFFFF;
+}
+#content .col .row .data .blue-bar {
+	background-color: #2A6C8B;
+}
+#content .col .row .data .head {
+	background-color: #CBCBCB;
+	color: #FFFFFF;
+}
+#content .col .row .data table tr.clickable-row:hover {
+	background-color: #DFDFDF;
+}
+#content .col .row .data .stats .stat {
+	border-color: #c3c3c3;
+}
+#content .col .row .data .stats .stat span.red {
+	color: #d20000;
+}
+#content .col .row .data .stats .stat span.green {
+	color: #009a30;
+}
+#content .col .row .data .stats .stat span.neutral {
+	color: #9DA0AA;
+}
+#content .loading {
+	color: #2A6C8B;
+}
+#content .col .row .data table tr.owner .fa {
+	color: #cecece;
+}
+#content .col .row .data table tr.owner .fa:hover {
+	color: #FFFFFF;
+}
+#content .col .row .data table tr .buy {
+	color: #009a30;
+}
+#content .col .row .data table tr .sell {
+	color: #d20000;
+}
+#content .col .row .data table tr .neutral {
+	color: #9DA0AA;
+}
+#content .col .row .data table tr.green td,
+#content .col .row .data table tr.red td {
+	color: #FFFFFF !important;
+}
+#content .col .row .data .form-group .input-group .input-group-addon {
+	border-right: 1px;
+	border-color: #d0d0d0;
+	background-color: #DFDFDF;
+	color: #5d606a;
+}
+
+.modal-content {
+	background-color: #CBCBCB;
+	color: #5d606a;
+}
+.modal-content .modal-header {
+	background-color: #2A6C8B;
+	color: #FFFFFF;
+}
+.alertify .ajs-dimmer {
+	background-color: #cbcbcb !important;
+}
+.alertify .ajs-header {
+	background-color: #2A6C8B !important;
+}
+.alertify .ajs-dialog,
+.alertify .ajs-footer,
+.alertify .ajs-content {
+	background-color: #CBCBCB !important;
+	color: #5d606a !important;
+	border-color: #5d606a !important;
+}
+.alertify .ajs-button {
+    border: 1px solid #29627d !important;
+}
+.alertify .ajs-button:hover,
+.alertify .ajs-button:active {
+	background-color: #3b95bf !important;
+	border-color: #3788ae !important;
+}
+.alertify .ajs-close:after {
+	color: #5489A2;
+}
+.alertify .ajs-close:hover:after {
+	color: #94b5c5;
+}

@@ -1,0 +1,45 @@
+<div class="row-box height3 scroll" id="orderBookScroll">
+  <table class="table table-condensed table-borderless">
+    <tr id="orderBookMid" class="head">
+      <th><span><%= selectedToken.name %>/<%= selectedBase.name %></span><div><%= selectedToken.name %>/<%= selectedBase.name %></div></th>
+      <th><span><%= selectedToken.name %></span><div><%= selectedToken.name %></div></th>
+      <th><span><%= selectedBase.name %></span><div><%= selectedBase.name %></div></th>
+    </tr>
+    <%
+    prev_price  = '';
+    i           = 0;
+
+    sellOrders = $(sellOrders).toArray().reverse(); // reverse for displaying in sellBook
+    sellOrders.forEach(function(order){
+      classes  = ['class-1', 'class-2', 'class-3', 'class-4', 'class-5', 'class-6', 'class-7', 'class-8'];
+      max     = 7;
+
+      current_price = order.price.toNumber().toFixed(5);
+      if(prev_price == '') {
+        prev_price = current_price;
+      }
+
+      if(current_price !== prev_price) {
+        i++;
+        if(i > max) {
+          i = 0;
+        }
+      }
+
+      muda = classes[i];
+
+      prev_price    = order.price.toNumber().toFixed(5);
+    %>
+    <tr class="<%= selectedAddr.toLowerCase()==order.order.user.toLowerCase() ? 'owner' : 'clickable-row' %> red <%= muda %>" data-toggle="modal" data-target="<%= selectedAddr.toLowerCase()==order.order.user.toLowerCase() ? '' : '#buyCrossModal' %>" data-order='<%= JSON.stringify(order) %>' data-desc='<% if (Number(order.order.expires) > blockNumber){ %><%= translator.get("expires_in")%> <%= (Number(order.order.expires) - blockNumber) %> <%= Number(order.order.expires) - blockNumber==1 ? translator.get("block") : translator.get("blocks") %><% } else { %><%= translator.get("expired") %><% } %><br /><%= translator.get("sell_order")%>: <%= bundle.utility.weiToEth(Math.abs(order.availableVolume), bundle.Cryptex.getDivisor(selectedToken)) %> <%= selectedToken.name %> @ <%= order.price.toNumber().toFixed(5) %> <%= selectedToken.name+'/'+selectedBase.name %>' data-token='<%= selectedToken.name %>' data-price='<%= order.price.toNumber().toFixed(5) %>' data-base='<%= selectedBase.name %>' data-amount='<%= bundle.utility.weiToEth(Math.abs(order.availableVolume), bundle.Cryptex.getDivisor(selectedToken)) %>'>
+      <td><span class="sell"><%= order.price.toNumber().toFixed(5) %></span><%= selectedAddr.toLowerCase()==order.order.user.toLowerCase() ? '<label class="fa fa-info-circle trn" data-toggle="popover" data-placement="bottom" data-content="your_order"></label>' : '' %></td>
+      <td class="align-right"><%= bundle.utility.weiToEth(Math.abs(order.availableVolume), bundle.Cryptex.getDivisor(selectedToken)) %></td>
+      <td class="align-right padding-right"><%= bundle.utility.weiToEth(Math.abs(order.availableVolumeBase), bundle.Cryptex.getDivisor(selectedBase)) %></td>
+    </tr>
+    <% }); %>
+    <% if (sellOrders.length==0) { %>
+      <tr>
+        <td colspan="3" style="padding-right: 12px;"><span class="trn">no_orders</span></td>
+      </tr>
+    <% } %>
+  </table>
+</div>

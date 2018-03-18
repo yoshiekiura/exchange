@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>API Documentation</title>
+	<meta charset="UTF-8">
+
+	<link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+</head>
+<body>
+
+<style type="text/css">
+	body {
+		position: relative;
+		font-family: 'Raleway', sans-serif;
+		background-color: #FFFFFF;
+		color: #333333;
+		font-size: 16px;
+		padding: 20px;
+	}
+</style>
+
+<img src="https://exchange.cryptex.cc/images/cryptex.png">
+<h1>Cryptex API Documentation</h1>
+
+<p>Ether is token “0” at address “0x0000000000000000000000000000000000000000”</p>
+
+<p>These can be called with no arguments.</p>
+<ul>
+	<li>https://api.cryptex.cc/returnTicker/</li>
+	<li>https://api.cryptex.cc/Trades/</li>
+	<li>https://api.cryptex.cc/Events/</li>
+	<li>https://api.cryptex.cc/orders/</li>
+	<li>https://api.cryptex.cc/topOrders/</li>
+</ul>
+
+<p>The following can be called with arguments where <b>[argument]</b> is inserted without square braces []. Tokens are referenced by their address on the blockchain with Ether being token “0” at address “0x0000000000000000000000000000000000000000”</p>
+
+<ul>
+	<li>https://api.cryptex.cc/orders/<b>[tokenA]</b>/<b>[tokenB]</b></li>
+	<li>https://api.cryptex.cc/events/<b>[nonce]</b></li>
+	<li>https://api.cryptex.cc/events/<b>[nonce]</b>/<b>[since]</b></li>
+	<li>https://api.cryptex.cc/topOrders/<b>[nonce]</b></li>
+	<li>https://api.cryptex.cc/orders/<b>[nonce]</b></li>
+	<li>https://api.cryptex.cc/orders/<b>[nonce]</b>/<b>[tokenA]</b>/<b>[tokenB]</b></li>
+</ul>
+
+<p>Example</p>
+
+<ul>
+	<li>https://api.cryptex.cc/orders/<b>0x0000000000000000000000000000000000000000</b>/<b>0xA8CDE321DDB903bfeA9b64E2c938c1BE5468bB75</b></li>
+</ul>
+
+</body>
+</html>

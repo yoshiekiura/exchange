@@ -1,0 +1,24 @@
+<div class="row-box table-header">
+  <table class="table table-condensed table-borderless">
+    <tr class="head">
+      <th><span><%= selectedToken.name %>/<%= selectedBase.name %></span><div><%= selectedToken.name %>/<%= selectedBase.name %></div></th>
+      <th><span><%= selectedToken.name %></span><div><%= selectedToken.name %></div></th>
+      <th><span><%= selectedBase.name %></span><div><%= selectedBase.name %></div></th>
+    </tr>
+  </table>
+</div>
+<div class="row-box height1 scroll">
+  <table class="table table-condensed table-borderless">
+    <% trades.forEach(function(trade){ %>
+      <tr>
+        <td class="align-right"><span class="<%= trade.amount>0 ? 'buy' : 'sell' %>"><%= trade.price.toNumber().toFixed(5) %> <i class="fa fa-arrow-<%= trade.amount>0 ? 'up' : 'down' %>" aria-hidden="true"></i></span></td>
+        <td class="align-right"><%= bundle.utility.weiToEth(Math.abs(trade.amount), bundle.Cryptex.getDivisor(selectedToken)) %></td>
+        <td class="align-right padding-right"><%= bundle.utility.weiToEth(Math.abs(trade.amount)*trade.price * bundle.Cryptex.getDivisor(selectedBase)/bundle.Cryptex.getDivisor(selectedToken), bundle.Cryptex.getDivisor(selectedBase)) %><a href="<%= trade.txLink %>" target="_blank"> <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+      </tr>
+    <% }); %>
+    <tr>
+      <td colspan="3" class="trn padding-right">only_7_days</td>
+    </tr>
+  </table>
+</div>
+</div>

@@ -1,0 +1,51 @@
+<table class="table table-condensed table-borderless">
+  <tr class="head extra">
+    <th><span class="trn">Block</span><div class="trn">Block</div></th>
+    <th><span class="trn">type</span><div class="trn">type</div></th>
+    <th><span><%= selectedToken.name %></span><div><%= selectedToken.name %></div></th>
+    <th><span><%= selectedBase.name %></span><div><%= selectedBase.name %></div></th>
+    <th><span><%= selectedToken.name %>/<%= selectedBase.name %></span><div><%= selectedToken.name %>/<%= selectedBase.name %></div></th>
+  </tr>
+  <% pendingTransactions.forEach(function(pendingTransaction){ %>
+    <tr>
+      <td><a href="<%= pendingTransaction.txLink %>" target="_blank"><span class="trn">question_mark</span></a></td>
+      <td><span class="trn">pending</span></td>
+      <td class="align-right"></td>
+      <td class="align-right"></td>
+      <td class="align-right padding-right"></td>
+    </tr>
+  <% }) %>
+  <% myEvents.forEach(function(event){ %>
+    <% if (event.trade) { %>
+      <% trade = event.trade %>
+      <tr>
+        <td><a href="<%= event.txLink %>" target="_blank"><%= event.blockNumber %></a></td>
+        <td><% if(selectedAddr.toLowerCase()==trade.buyer.toLowerCase()) { %><span class="trn">buy</span><% } else { %><span class="trn">sell</span><% } %></span></td>
+        <td class="align-right"><%= bundle.utility.weiToEth(Math.abs(trade.amount), bundle.Cryptex.getDivisor(selectedToken)) %></td>
+        <td class="align-right"><%= bundle.utility.weiToEth(Math.abs(trade.amount)*trade.price * bundle.Cryptex.getDivisor(selectedBase)/bundle.Cryptex.getDivisor(selectedToken), bundle.Cryptex.getDivisor(selectedBase)) %></td>
+        <td class="align-right padding-right"><%= trade.price.toNumber().toFixed(5) %></td>
+      </tr>
+    <% } else if (event.deposit) { %>
+      <% deposit = event.deposit %>
+      <tr>
+        <td><a href="<%= event.txLink %>" target="_blank"><%= event.blockNumber %></a></td>
+        <td><span class="trn">deposit</span></td>
+        <td class="align-right"><% if (deposit.token.addr==selectedToken.addr) {%><%= bundle.utility.weiToEth(deposit.amount, bundle.Cryptex.getDivisor(deposit.token)) %><% } %></td>
+        <td class="align-right"><% if (deposit.token.addr==selectedBase.addr) {%><%= bundle.utility.weiToEth(deposit.amount, bundle.Cryptex.getDivisor(deposit.token)) %><% } %></td>
+        <td class="align-right padding-right"></td>
+      </tr>
+    <% } else if (event.withdraw) { %>
+      <% withdraw = event.withdraw %>
+      <tr>
+        <td><a href="<%= event.txLink %>" target="_blank"><%= event.blockNumber %></a></td>
+        <td><span class="trn">withdraw</span></td>
+        <td class="align-right"><% if (withdraw.token.addr==selectedToken.addr) {%><%= bundle.utility.weiToEth(withdraw.amount, bundle.Cryptex.getDivisor(withdraw.token)) %><% } %></td>
+        <td class="align-right"><% if (withdraw.token.addr==selectedBase.addr) {%><%= bundle.utility.weiToEth(withdraw.amount, bundle.Cryptex.getDivisor(withdraw.token)) %><% } %></td>
+        <td class="align-right padding-right"></td>
+      </tr>
+    <% } %>
+  <% }); %>
+  <tr>
+    <td colspan="5" class="trn padding-right">only_7_days</td>
+  </tr>
+</table>

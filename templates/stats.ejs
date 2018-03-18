@@ -1,0 +1,51 @@
+<%
+  if(stats.percentChange24h > 0) {
+    sign    = '+';
+    color   = 'green';
+    percent =  stats.percentChange24h.toFixed(2);
+  } else if(stats.percentChange24h < 0) {
+    sign    = '';
+    color   = 'red';
+    percent =  stats.percentChange24h.toFixed(2);
+  } else {
+    sign    = '+';
+    color   = 'neutral';
+    percent =  stats.percentChange24h.toFixed(2);
+  }
+  percentChange24h = '<span class="' + color + '">' + sign + percent + '%</span>';
+
+  if(stats.percentChange1h > 0) {
+    sign    = '+';
+    color   = 'green';
+    percent =  stats.percentChange1h.toFixed(2);
+  } else if(stats.percentChange1h < 0) {
+    sign    = '';
+    color   = 'red';
+    percent =  stats.percentChange1h.toFixed(2);
+  } else {
+    sign    = '+';
+    color   = 'neutral';
+    percent =  stats.percentChange1h.toFixed(2);
+  }
+  percentChange1h = '<span class="' + color + '">' + sign + percent + '%</span>';
+%>
+<div class="stat col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1">
+  <div class="stat_title">24h Change</div>
+  <div class="stat_info"><%= percentChange24h %></div>
+</div>
+<div class="stat col-lg-2 col-md-2">
+  <div class="stat_title">1h Change</div>
+  <div class="stat_info"><%= percentChange1h %></div>
+</div>
+<div class="stat col-lg-2 col-md-2">
+  <div class="stat_title">Last Price</div>
+  <div class="stat_info"><%= stats.lastPrice.toFixed(6) %></div>
+</div>
+<div class="stat col-lg-2 col-md-2">
+  <div class="stat_title">24h High</div>
+  <div class="stat_info"><%= stats.highPrice.toFixed(6) %></div>
+</div>
+<div class="stat col-lg-2 col-md-2">
+  <div class="stat_title">24h Low</div>
+  <div class="stat_info"><%= stats.lowPrice.toFixed(6) %></div>
+</div>

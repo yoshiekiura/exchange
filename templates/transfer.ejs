@@ -1,0 +1,60 @@
+<% if (addr && addr.slice(0,39)!='0x0000000000000000000000000000000000000') { %>
+  <%
+  balanceToken = balances.filter(function(x){return x.token.addr==selectedToken.addr})[0]
+  balanceBase = balances.filter(function(x){return x.token.addr==selectedBase.addr})[0]
+  %>
+  <table class="table table-borderless">
+    <tr class="head extra">
+      <th><span class="trn">token</span><div class="trn">token</div></th>
+      <th><span class="trn">balance_in_your_wallet</span><div class="trn">balance_in_your_wallet</div></th>
+      <th><span class="trn">balance_cryptex</span><div class="trn">balance_cryptex</div></th>
+    </tr>
+    <tr>
+      <td><a href="javascript:;" onclick="bundle.Cryptex.displayTokenGuide('<%= selectedToken.name %>')"><%= selectedToken.name %></a></td><td class="SelectedTokenWallet"><%= bundle.utility.weiToEth(balanceToken.balanceOutside, bundle.Cryptex.getDivisor(balanceToken.token)) %></td><td class="SelectedTokenWalletCryptex"><%= bundle.utility.weiToEth(balanceToken.balance, bundle.Cryptex.getDivisor(balanceToken.token)) %></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="form-group no-margin">
+          <div class="input-group">
+            <div class="input-group-addon">Receiver</div>
+            <input type="text" class="form-control trn" id="transferTo<%= selectedToken.addr %>" placeholder="address" value="<%= addr %>" />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="text" class="form-control trn" id="transferAmount<%= selectedToken.addr %>" placeholder="amount" />
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary trn" style="width: 100%;" id="transferSubmit<%= selectedToken.addr %>" onclick="transferClick('<%= selectedToken.addr %>')">transfer</button>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="javascript:;" onclick="bundle.Cryptex.displayTokenGuide('<%= selectedBase.name %>')"><%= selectedBase.name %></a></td><td class="SelectedBaseWallet"><%= bundle.utility.weiToEth(balanceBase.balanceOutside, bundle.Cryptex.getDivisor(balanceBase.token)) %></td><td class="SelectedBaseWalletCryptex"><%= bundle.utility.weiToEth(balanceBase.balance, bundle.Cryptex.getDivisor(balanceBase.token)) %></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <div class="form-group no-margin">
+          <div class="input-group">
+            <div class="input-group-addon">Receiver</div>
+            <input type="text" class="form-control trn" id="transferTo<%= selectedBase.addr %>" placeholder="address" value="<%= addr %>" />
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <input type="text" class="form-control trn" id="transferAmount<%= selectedBase.addr %>" placeholder="amount" />
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary trn" style="width: 100%;" id="transferSubmit<%= selectedBase.addr %>" onclick="transferClick('<%= selectedBase.addr %>')">transfer</button>
+      </td>
+    </tr>
+
+  </table>
+<% } else { %>
+  <table class="table table-borderless">
+    <tr><td><span class="trn">please_select_account</span></td></tr>
+  </table>
+<% } %>
