@@ -8,7 +8,7 @@ Unlike centralized exchanges, their decentralized counterparts do not require in
 The architecture of decentralized exchanges means that there are significant advantages to using them. For example, the absence of an intermediary allows for almost non-existent trading fees. Decentralized exchanges are also more private, centralized exchanges often require personal information and proof of identity e.g. passport, in order to trade on their platform. A decentralized exchange like Cryptex does not require any disclosure of identity, with a disclosure of identity only being required to the individual that you are conducting the trade with. Lastly, the issue of security is also improved under the decentralized exchange model. Decentralized exchanges do not hold cryptocurrency for users, and instead, users are connected directly with each other, meaning that you do not have to worry about the security of your cryptocurrency sitting on an exchange.
 We really believe that blockchain is future, so we are developing Cryptex Decentralized ERC20 Token Exhcange, where all exchange revenue is immutably distributed to shareholders via Smart Contract.
 
-- Our [whitepaper](https://cryptex.cc/whitepaper.pdf)
 - Official [website](https://cryptex.cc/)
-- Our [exchange](https://exchange.cryptex.cc/)
-- Our [Twitter](https://twitter.com/cryptexcc)
+- You can trade on our [exchange](https://exchange.cryptex.cc/)
+- Download [whitepaper](https://cryptex.cc/whitepaper.pdf)
+- Follow us on [Twitter](https://twitter.com/cryptexcc)
