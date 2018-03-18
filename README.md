@@ -11,4 +11,4 @@ We really believe that blockchain is future, so we are developing Cryptex Decent
 - Our [whitepaper](https://cryptex.cc/whitepaper.pdf)
 - Official [website](https://cryptex.cc/)
 - Our [exchange](https://exchange.cryptex.cc/)
-- [Twitter](https://twitter.com/cryptexcc)
+- [Twitter](https://twitter.com/cryptexcc) account
